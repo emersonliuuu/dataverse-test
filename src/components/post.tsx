@@ -35,8 +35,8 @@ const Post = (props: PostProps) => {
       const { streamContent, streamId, newMirror, existingMirror } =
         await runtimeConnector.createStream({
           did,
-          appName: "dapqab",
-          modelName: "dapqab_post",
+          appName: "dapq001",
+          modelName: "dapp001_post",
           streamContent: {
             appVersion: "0.1.0",
             text: content,
@@ -61,8 +61,8 @@ const Post = (props: PostProps) => {
     //   });
     // } else {
     streams = await runtimeConnector.loadStreamsByModel({
-      appName: "dapqab",
-      modelName: "dapqab_post",
+      appName: "dapq001",
+      modelName: "dapp001_post",
     });
     // }
     setContentRecord(streams);
