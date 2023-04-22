@@ -26,8 +26,8 @@ const ConnectWallet = (props: ConnectWalletProps) => {
     await runtimeConnector.switchNetwork(137);
     const identity = await runtimeConnector.connectIdentity({
       wallet: { name: METAMASK, type: CRYPTO_WALLET_TYPE },
-      appName: Apps.Dataverse,
-      modelNames: [ModelNames.contentFolders],
+      appName: "dapq001",
+      modelNames: ["dapp001_post"],
     });
     console.log(identity);
     setIdentity(identity);
