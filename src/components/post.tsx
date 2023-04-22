@@ -39,7 +39,7 @@ const Post = (props: PostProps) => {
           modelName: "dapp001_post",
           streamContent: {
             appVersion: "0.1.0",
-            text: content,
+            text: JSON.stringify(content),
             createdAt: currentTime,
             updatedAt: currentTime,
           },
@@ -86,10 +86,40 @@ const Post = (props: PostProps) => {
       <button onClick={() => loadContent()}>load posts</button>
       {contentRecord &&
         Object.keys(contentRecord).map((streamId) => {
-          return <div>{contentRecord[streamId].content.text}</div>;
+          //@ts-ignore
+          if (hasJsonStructure(contentRecord[streamId].text)) {
+            //@ts-ignore
+            let item = JSON.parse(contentRecord[streamId].text);
+            let link = item.itemLink;
+            let title = item.itemTitle;
+            let time = contentRecord[streamId].createdAt;
+            let id = streamId;
+            return (
+              <div>
+                {`${id}: time ${time} `}
+                <br></br>
+                {`${title}`}
+                <br></br>
+                <a target="_blank" href={link}>
+                  {link}
+                </a>
+                <hr></hr>
+              </div>
+            );
+          }
         })}
     </div>
   );
+  function hasJsonStructure(str: any) {
+    if (typeof str !== "string") return false;
+    try {
+      const result = JSON.parse(str);
+      const type = Object.prototype.toString.call(result);
+      return type === "[object Object]" || type === "[object Array]";
+    } catch (err) {
+      return false;
+    }
+  }
 };
 
 export default Post;
