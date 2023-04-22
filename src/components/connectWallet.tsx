@@ -23,7 +23,7 @@ const ConnectWallet = (props: ConnectWalletProps) => {
     console.log(did, "did");
 
     // await runtimeConnector.switchNetwork(80001);
-    await runtimeConnector.switchNetwork(137);
+    await runtimeConnector.switchNetwork(97);
     const identity = await runtimeConnector.connectIdentity({
       wallet: { name: METAMASK, type: CRYPTO_WALLET_TYPE },
       appName: "dapq001",
